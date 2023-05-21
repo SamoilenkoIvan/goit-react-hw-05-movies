@@ -1,9 +1,12 @@
 import { fetchMovieCredits } from '../../api';
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
+import PropTypes from 'prop-types';
+
+
 
 import {
-  CastContainer,
+    CastContainer,
   CastList,
   CastItem,
   Img,
@@ -13,19 +16,19 @@ import {
 } from './Cast.styled';
 
 const Cast = () => {
-  const { movieId } = useParams('movieId');
+    const { movieId } = useParams('movieId');
   const [credits, setCredits] = useState([]);
-
+  
   useEffect(() => {
-    fetchMovieCredits(movieId).then(setCredits);
+      fetchMovieCredits(movieId).then(setCredits);
   }, [movieId]);
-
+  
   return (
-    <CastContainer>
+      <CastContainer>
       {credits.length > 0 && (
-        <CastList>
+          <CastList>
           {credits.map(({ id, name, character, photo }) => {
-            return (
+              return (
               <CastItem key={id}>
                 <Img src={photo} alt={name} />
                 <CastDescr>
@@ -34,7 +37,7 @@ const Cast = () => {
                 </CastDescr>
               </CastItem>
             );
-          })}
+        })}
         </CastList>
       )}
     </CastContainer>
@@ -42,3 +45,7 @@ const Cast = () => {
 };
 
 export default Cast;
+
+Cast.propTypes = {
+  movieId: PropTypes.string.isRequired,
+};

@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useSearchParams, useLocation } from 'react-router-dom';
 import { fetchByQuery } from '../../api';
+import PropTypes from 'prop-types';
 import {
   FormDiv,
   Form,
@@ -62,5 +63,14 @@ const Movies = () => {
     </>
   );
 };
-
+Movies.propTypes = {
+  query: PropTypes.string,
+  movies: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      title: PropTypes.string.isRequired,
+      poster: PropTypes.string.isRequired,
+    })
+  ),
+};
 export default Movies;

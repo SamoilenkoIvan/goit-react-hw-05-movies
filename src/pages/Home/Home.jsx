@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import { fetchTrending } from '../../api';
+import PropTypes from 'prop-types';
 import {
   HomeContainer,
   HomeTitle,
@@ -37,6 +38,17 @@ const Home = () => {
       )}
     </HomeContainer>
   );
+};
+
+
+Home.propTypes = {
+  movies: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      title: PropTypes.string.isRequired,
+      poster: PropTypes.string.isRequired,
+    })
+  ),
 };
 
 export default Home;

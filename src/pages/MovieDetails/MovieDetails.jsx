@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 
 import { useParams, Outlet, useLocation, useNavigate } from 'react-router-dom';
 import { fetchMovieDetails } from '../../api';
+import PropTypes from 'prop-types';
 import {
   Btn,
   MovieContainer,
@@ -73,4 +74,9 @@ const MovieDetails = () => {
   );
 };
 
+MovieDetails.propTypes = {
+  movieId: PropTypes.string.isRequired,
+  location: PropTypes.object.isRequired,
+  navigate: PropTypes.func.isRequired,
+};
 export default MovieDetails;
